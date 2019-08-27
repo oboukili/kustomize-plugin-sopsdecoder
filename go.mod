@@ -1,4 +1,4 @@
-module gitlab.com/sopsdecoder
+module gitlab.com/maltcommunity/sopsdecoder
 
 go 1.12
 

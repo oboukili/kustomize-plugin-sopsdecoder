@@ -1,0 +1,21 @@
+---
+default:
+  image:
+    name: gcr.io/kaniko-project/executor:debug-v0.10.0
+    entrypoint: [""]
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - >
+      /kaniko/executor \
+        --verbosity error \
+        --build-arg GITLAB_CREDS="gitlab-ci-token:${CI_JOB_TOKEN}" \
+        --context ${CI_PROJECT_DIR} \
+        --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG} \
+        --destination ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+  tags:
+    - docker

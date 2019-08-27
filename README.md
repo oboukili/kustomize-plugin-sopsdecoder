@@ -9,9 +9,10 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 
 ### Requirements:
 
+* Go 1.12
 * Kustomize 3.1.0 **built from source**
     ```
-    go install sigs.k8s.io/kustomize/v3/cmd/kustomize@v3.1.0
+    go get sigs.k8s.io/kustomize/v3/cmd/kustomize@v3.1.0
     ```
 
 ### Usage:
@@ -63,8 +64,8 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 ```
 mkdir -p $HOME/.config/kustomize/plugin
 cd $HOME/.config/kustomize/plugin
-git clone https://gitlab.com/maltcommunity/ops/sopsencoder -o maltcommunity/sopsencoder
-cd maltcommunity/sopsencoder
+git clone https://gitlab.com/maltcommunity/ops/sopsdecoder -o sopsdecoder
+cd sopsdecoder
 go build -buildmode plugin -o SopsDecoder.so SopsDecoder.go
 ```
 
