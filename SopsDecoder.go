@@ -46,6 +46,10 @@ func (p *plugin) Generate() (resmap.ResMap, error) {
 func (p *plugin) GetSopsSecret() (secrets map[string]interface{}, err error) {
 	secrets = make(map[string]interface{}, 0)
 
+	if len(p.Files) == 0 {
+		return nil, fmt.Errorf("%s: no secret files were found within files attribute", p.Name)
+	}
+
 	for _, file := range p.Files {
 		secretKeyName := ""
 
