@@ -6,6 +6,7 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 
 * Unit tests (please forgive me!)
 * Integration tests
+* Support for common GeneratorOptions (disableSuffixHash...)
 
 ### Requirements:
 
@@ -62,8 +63,8 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 ### Build
 
 ```
-mkdir -p $HOME/.config/kustomize/plugin
-cd $HOME/.config/kustomize/plugin
+mkdir -p $HOME/.config/kustomize/plugin/gitlab.com/maltcommunity
+cd $HOME/.config/kustomize/plugin/gitlab.com/maltcommunity
 git clone https://gitlab.com/maltcommunity/ops/sopsdecoder -o sopsdecoder
 cd sopsdecoder
 go build -buildmode plugin -o SopsDecoder.so SopsDecoder.go
