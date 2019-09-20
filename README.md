@@ -65,7 +65,7 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 ```
 mkdir -p $HOME/.config/kustomize/plugin/gitlab.com/maltcommunity
 cd $HOME/.config/kustomize/plugin/gitlab.com/maltcommunity
-git clone https://gitlab.com/maltcommunity/ops/sopsdecoder -o sopsdecoder
+git clone https://gitlab.com/maltcommunity/public/sopsdecoder -o sopsdecoder
 cd sopsdecoder
 go build -buildmode plugin -o SopsDecoder.so SopsDecoder.go
 ```
