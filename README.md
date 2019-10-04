@@ -11,9 +11,9 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 ### Requirements:
 
 * Go 1.12
-* Kustomize 3.1.0 **built from source**
+* Kustomize 3.2.0 **built from source**
     ```
-    go get sigs.k8s.io/kustomize/v3/cmd/kustomize@v3.1.0
+    go get sigs.k8s.io/kustomize/v3/cmd/kustomize@v3.2.0
     ```
 
 ### Usage:
