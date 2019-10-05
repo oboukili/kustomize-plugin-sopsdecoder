@@ -23,6 +23,6 @@ require (
 	google.golang.org/api v0.6.0 // indirect
 	google.golang.org/grpc v1.21.1 // indirect
 	k8s.io/apimachinery v0.0.0-20190313205120-d7deff9243b1
-	sigs.k8s.io/kustomize/v3 v3.2.0
+	sigs.k8s.io/kustomize/v3 v3.1.0
 	sigs.k8s.io/yaml v1.1.0
 )
