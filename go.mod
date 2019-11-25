@@ -1,4 +1,4 @@
-module gitlab.com/maltcommunity/sopsdecoder
+module github.com/oboukili/kustomize-plugin-sopsdecoder
 
 go 1.12
 

@@ -28,7 +28,7 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 
 * secretGenerator.yml    
     ```
-    apiVersion: gitlab.com/maltcommunity
+    apiVersion: github.com/oboukili
     kind: SopsDecoder
     metadata:
       name: mySecretGenerator
@@ -63,9 +63,9 @@ Kustomize generator plugin that can generate a *single* secret from *several* SO
 ### Build
 
 ```
-mkdir -p $HOME/.config/kustomize/plugin/gitlab.com/maltcommunity
-cd $HOME/.config/kustomize/plugin/gitlab.com/maltcommunity
-git clone https://gitlab.com/maltcommunity/public/sopsdecoder -o sopsdecoder
+mkdir -p $HOME/.config/kustomize/plugin/github.com/oboukili
+cd $HOME/.config/kustomize/plugin/github.com/oboukili
+git clone https://github.com/oboukili/kustomize-plugin-sopsdecoder -o sopsdecoder
 cd sopsdecoder
 go build -buildmode plugin -o SopsDecoder.so SopsDecoder.go
 ```
