@@ -6,9 +6,9 @@ import (
 	"go.mozilla.org/sops/decrypt"
 	"k8s.io/apimachinery/pkg/util/json"
 	"reflect"
-	"sigs.k8s.io/kustomize/v3/pkg/ifc"
-	"sigs.k8s.io/kustomize/v3/pkg/resmap"
-	"sigs.k8s.io/kustomize/v3/pkg/types"
+	"sigs.k8s.io/kustomize/api/kv"
+	"sigs.k8s.io/kustomize/api/resmap"
+	"sigs.k8s.io/kustomize/api/types"
 	"sigs.k8s.io/yaml"
 	"strings"
 )
@@ -20,8 +20,7 @@ type file struct {
 }
 
 type plugin struct {
-	rf        *resmap.Factory
-	ldr       ifc.Loader
+	h                *resmap.PluginHelpers
 	Name      string `json:"name,omitempty" yaml:"name,omitempty"`
 	Namespace string `json:"namespace,omitempty" yaml:"namespace,omitempty"`
 	Files     []file `json:"files,omitempty" yaml:"files,omitempty"`
@@ -29,9 +28,8 @@ type plugin struct {
 
 var KustomizePlugin plugin
 
-func (p *plugin) Config(ldr ifc.Loader, rf *resmap.Factory, c []byte) error {
-	p.rf = rf
-	p.ldr = ldr
+func (p *plugin) Config(h *resmap.PluginHelpers, c []byte) error {
+	p.h = h
 	return yaml.Unmarshal(c, p)
 }
 
@@ -65,7 +63,7 @@ func (p *plugin) GetSopsSecret() (secrets map[string]interface{}, err error) {
 			return nil, fmt.Errorf("unsupported file format %s for sops: %s, supported file types: [yaml,json,raw]", file.Type, file.Path)
 		}
 
-		bytes, err := p.ldr.Load(file.Path)
+		bytes, err := p.h.Loader().Load(file.Path)
 		if err != nil {
 			return nil, errors.Wrapf(err, "trouble reading file %s", file.Path)
 		}
@@ -139,5 +137,6 @@ func (p *plugin) GenerateKubernetesSecrets(secrets map[string]interface{}) (resM
 		}
 		counter += 1
 	}
-	return p.rf.FromSecretArgs(p.ldr, nil, args)
+	return p.h.ResmapFactory().
+		FromSecretArgs(kv.NewLoader(p.h.Loader(), p.h.Validator()), nil, args)
 }
